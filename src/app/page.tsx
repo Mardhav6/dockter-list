@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
 import { Doctor, Filters } from '@/types/doctor';
 import DoctorList from '@/components/DoctorList';
 import SearchBar from '@/components/SearchBar';
 import FilterPanel from '@/components/FilterPanel';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 
-export default function Home() {
+function HomeContent() {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [filteredDoctors, setFilteredDoctors] = useState<Doctor[]>([]);
   const [filters, setFilters] = useState<Filters>({
@@ -87,7 +87,7 @@ export default function Home() {
     // Apply specialties filter
     if (filters.specialties.length > 0) {
       filtered = filtered.filter(doctor =>
-        doctor.specialties.some(specialty => filters.specialties.includes(specialty))
+        doctor.specialties && doctor.specialties.some(specialty => filters.specialties.includes(specialty))
       );
     }
 
@@ -95,9 +95,9 @@ export default function Home() {
     if (filters.sortBy) {
       filtered.sort((a, b) => {
         if (filters.sortBy === 'fees') {
-          return a.fee - b.fee;
+          return (a.fee || 0) - (b.fee || 0);
         } else {
-          return b.experience - a.experience;
+          return (b.experience || 0) - (a.experience || 0);
         }
       });
     }
@@ -107,7 +107,7 @@ export default function Home() {
 
   // Update URL when filters change
   useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams?.toString() || '');
     
     if (filters.consultationType) {
       params.set('consultationType', filters.consultationType);
@@ -134,7 +134,7 @@ export default function Home() {
     }
 
     const queryString = params.toString();
-    const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
+    const newUrl = queryString ? `${pathname || '/'}?${queryString}` : (pathname || '/');
     router.push(newUrl, { scroll: false });
     
     applyFilters();
@@ -142,10 +142,10 @@ export default function Home() {
 
   // Load filters from URL on initial load and URL changes
   useEffect(() => {
-    const consultationType = searchParams.get('consultationType');
-    const specialties = searchParams.get('specialties')?.split(',').filter(Boolean) || [];
-    const sortBy = searchParams.get('sortBy');
-    const search = searchParams.get('search') || '';
+    const consultationType = searchParams?.get('consultationType');
+    const specialties = searchParams?.get('specialties')?.split(',').filter(Boolean) || [];
+    const sortBy = searchParams?.get('sortBy');
+    const search = searchParams?.get('search') || '';
 
     setFilters(prev => ({
       ...prev,
@@ -194,5 +194,13 @@ export default function Home() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 } 

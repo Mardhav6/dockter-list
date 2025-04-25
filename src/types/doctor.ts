@@ -1,22 +1,21 @@
 export interface Doctor {
   id: string;
   name: string;
-  specialties?: string[];
-  experience?: number;
-  fee?: number;
-  consultationModes?: ('Video Consult' | 'In Clinic')[];
-  location?: string;
-  clinicName?: string;
-  image?: string;
+  name_initials: string;
+  photo: string;
+  introduction: string;
+  specialties: string[];
+  experience: number;
+  fee: number;
+  clinicName: string;
+  location: string;
+  languages: string[];
+  consultationModes: string[];
 }
 
-export type ConsultationType = 'Video Consult' | 'In Clinic';
-
-export type SortType = 'fees' | 'experience';
-
 export interface Filters {
-  consultationType?: ConsultationType;
   specialties: string[];
-  sortBy?: SortType;
   searchQuery: string;
+  consultationType?: string;
+  sortBy?: string;
 } 

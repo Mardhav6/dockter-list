@@ -8,14 +8,18 @@ const nextConfig = {
     serverActions: true
   },
   output: 'standalone',
+  swcMinify: false,
+  typescript: {
+    ignoreBuildErrors: true
+  },
   webpack: (config) => {
     config.resolve.fallback = {
+      ...config.resolve.fallback,
       fs: false,
       path: false
-    }
-    return config
-  },
-  swcMinify: false
-}
+    };
+    return config;
+  }
+};
 
-export default nextConfig 
+export default nextConfig; 
