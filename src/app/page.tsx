@@ -27,7 +27,7 @@ function HomeContent() {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await fetch('https://srijandubey.github.io/campus-api-mock/SRM-C1-25.json');
+        const response = await fetch('/data/doc.json');
         if (!response.ok) {
           throw new Error('Failed to fetch doctors');
         }
@@ -67,31 +67,27 @@ function HomeContent() {
   const applyFilters = useCallback(() => {
     let filtered = [...doctors];
 
-    // Apply search filter
     if (filters.searchQuery) {
       filtered = filtered.filter(doctor =>
         doctor.name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
-        (doctor.specialties && doctor.specialties.some(specialty => 
+        doctor.specialties.some(specialty =>
           specialty.toLowerCase().includes(filters.searchQuery.toLowerCase())
-        ))
+        )
       );
     }
 
-    // Apply consultation type filter
     if (filters.consultationType) {
       filtered = filtered.filter(doctor =>
-        doctor.consultationModes && doctor.consultationModes.includes(filters.consultationType!)
+        doctor.consultationModes.includes(filters.consultationType!)
       );
     }
 
-    // Apply specialties filter
     if (filters.specialties.length > 0) {
       filtered = filtered.filter(doctor =>
-        doctor.specialties && doctor.specialties.some(specialty => filters.specialties.includes(specialty))
+        doctor.specialties.some(specialty => filters.specialties.includes(specialty))
       );
     }
 
-    // Apply sorting
     if (filters.sortBy) {
       filtered.sort((a, b) => {
         if (filters.sortBy === 'fees') {
@@ -105,7 +101,6 @@ function HomeContent() {
     setFilteredDoctors(filtered);
   }, [doctors, filters]);
 
-  // Update URL when filters change
   useEffect(() => {
     const params = new URLSearchParams(searchParams?.toString() || '');
     
@@ -140,7 +135,6 @@ function HomeContent() {
     applyFilters();
   }, [filters, pathname, router, searchParams, applyFilters]);
 
-  // Load filters from URL on initial load and URL changes
   useEffect(() => {
     const consultationType = searchParams?.get('consultationType');
     const specialties = searchParams?.get('specialties')?.split(',').filter(Boolean) || [];
@@ -199,7 +193,11 @@ function HomeContent() {
 
 export default function Home() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <p className="text-gray-600">Loading...</p>
+      </div>
+    </div>}>
       <HomeContent />
     </Suspense>
   );

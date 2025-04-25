@@ -7,7 +7,7 @@ const nextConfig = {
   experimental: {
     serverActions: true
   },
-  output: 'standalone',
+  output: 'export',
   swcMinify: false,
   typescript: {
     ignoreBuildErrors: true
