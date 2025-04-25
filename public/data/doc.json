@@ -1,0 +1,88 @@
+[
+  {
+    "id": "1",
+    "name": "Dr. John Smith",
+    "photo": "/images/doctors/dr-john-smith.jpg",
+    "doctor_introduction": "Dr. John Smith is a highly experienced General Physician and Cardiologist with over 15 years of practice. He specializes in preventive cardiology and has helped thousands of patients maintain heart health.",
+    "specialities": [
+      {
+        "id": "1",
+        "name": "General Physician"
+      },
+      {
+        "id": "2",
+        "name": "Cardiologist"
+      }
+    ],
+    "fees": "₹500",
+    "experience": "15 years",
+    "languages": ["English", "Spanish"],
+    "clinic": {
+      "name": "Smith Medical Center",
+      "address": {
+        "street": "123 Medical Drive",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10001"
+      }
+    },
+    "video_consult": true,
+    "in_clinic": true
+  },
+  {
+    "id": "2",
+    "name": "Dr. Sarah Johnson",
+    "photo": "/images/doctors/dr-sarah-johnson.jpg",
+    "doctor_introduction": "Dr. Sarah Johnson is a dedicated Dentist with 8 years of experience in cosmetic and general dentistry. She is known for her gentle approach and modern treatment techniques.",
+    "specialities": [
+      {
+        "id": "3",
+        "name": "Dentist"
+      }
+    ],
+    "fees": "₹300",
+    "experience": "8 years",
+    "languages": ["English", "French"],
+    "clinic": {
+      "name": "Smile Dental Care",
+      "address": {
+        "street": "456 Dental Avenue",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zip": "90001"
+      }
+    },
+    "video_consult": false,
+    "in_clinic": true
+  },
+  {
+    "id": "3",
+    "name": "Dr. Michael Brown",
+    "photo": "/images/doctors/dr-michael-brown.jpg",
+    "doctor_introduction": "Dr. Michael Brown is a renowned Dermatologist and Cosmetologist with 12 years of experience. He specializes in skin care treatments and cosmetic procedures.",
+    "specialities": [
+      {
+        "id": "4",
+        "name": "Dermatologist"
+      },
+      {
+        "id": "5",
+        "name": "Cosmetologist"
+      }
+    ],
+    "fees": "₹800",
+    "experience": "12 years",
+    "languages": ["English", "German"],
+    "clinic": {
+      "name": "Skin & Beauty Clinic",
+      "address": {
+        "street": "789 Beauty Street",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60007"
+      }
+    },
+    "video_consult": true,
+    "in_clinic": true
+  }
+] 
