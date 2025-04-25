@@ -71,9 +71,9 @@ export default function Home() {
     if (filters.searchQuery) {
       filtered = filtered.filter(doctor =>
         doctor.name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
-        doctor.specialties.some(specialty => 
+        (doctor.specialties && doctor.specialties.some(specialty => 
           specialty.toLowerCase().includes(filters.searchQuery.toLowerCase())
-        )
+        ))
       );
     }
 

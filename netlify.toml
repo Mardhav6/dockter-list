@@ -6,6 +6,7 @@
   NEXT_PUBLIC_BASE_URL = "https://your-site-name.netlify.app"
   NODE_VERSION = "18.20.8"
   PNPM_VERSION = "10.9.0"
+  NEXT_PRIVATE_TARGET = "server"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs" 
