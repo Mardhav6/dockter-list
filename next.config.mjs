@@ -15,8 +15,7 @@ const nextConfig = {
     }
     return config
   },
-  swcMinify: false,
-  distDir: '.next'
+  swcMinify: false
 }
 
 export default nextConfig 
