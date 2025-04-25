@@ -1,9 +1,11 @@
 [build]
-  command = "npm run netlify-build"
+  command = "pnpm install && pnpm run build"
   publish = ".next"
 
 [build.environment]
   NEXT_PUBLIC_BASE_URL = "https://your-site-name.netlify.app"
+  NODE_VERSION = "18"
+  PNPM_VERSION = "10.9.0"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs" 
