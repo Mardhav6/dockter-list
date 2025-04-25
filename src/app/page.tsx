@@ -80,7 +80,7 @@ export default function Home() {
     // Apply consultation type filter
     if (filters.consultationType) {
       filtered = filtered.filter(doctor =>
-        doctor.consultationModes.includes(filters.consultationType!)
+        doctor.consultationModes && doctor.consultationModes.includes(filters.consultationType!)
       );
     }
 
