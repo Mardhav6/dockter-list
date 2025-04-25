@@ -1,34 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      'srijandubey.github.io',
-      'localhost',
-      'doctorlistingingestionpr.azureedge.net'
-    ],
-    unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
+    domains: ['localhost'],
+    unoptimized: true
   },
   experimental: {
-    serverActions: true,
-  },
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false, path: false };
-    return config;
-  },
-  swcMinify: false,
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
+    serverActions: true
   },
   output: 'standalone',
-};
+  webpack: (config) => {
+    config.resolve.fallback = {
+      fs: false,
+      path: false
+    }
+    return config
+  }
+}
 
-export default nextConfig; 
+export default nextConfig 
