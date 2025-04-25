@@ -4,17 +4,18 @@ const nextConfig = {
     domains: ['localhost'],
     unoptimized: true
   },
-  output: 'standalone',
   experimental: {
     serverActions: true
   },
+  output: 'standalone',
   webpack: (config) => {
     config.resolve.fallback = {
       fs: false,
       path: false
     }
     return config
-  }
+  },
+  swcMinify: false
 }
 
 export default nextConfig 
